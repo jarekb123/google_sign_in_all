@@ -2,6 +2,10 @@
 
 Google Sign In wrapper for Flutter - wraps `google_sign_in` and `googleapis_auth` to single API - to use it in Flutter web and mobile in easy way 
 
+## Getting started
+
+TODO: add getting started
+
 ## TODO
 * [x] create abstraction
 * [x] wrap `google_sign_in`
