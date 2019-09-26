@@ -1,6 +1,6 @@
 name: google_sign_in_all
 description: Flutter Google Sign In wrapper on `googleapis_auth` (Web) and `google_sign_in` (Android/iOS)
-version: 0.0.1
+version: 0.0.2
 author: Jaroslaw Butajlo <jaroslaw.butajlo@gmail.com>
 homepage: https://github.com/jarekb123/google_sign_in_all
 issue_tracker: https://github.com/jarekb123/google_sign_in_all/issues
