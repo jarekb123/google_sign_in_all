@@ -28,6 +28,21 @@ class GoogleSignIn implements i.GoogleSignIn {
       idToken: auth.idToken,
     );
   }
+
+  @override
+  Future<i.GoogleAccount> getCurrentUser() {
+    return Future.value(_googleSignIn.currentUser).then(_toGoogleAccount);
+  }
+
+  i.GoogleAccount _toGoogleAccount(
+      google.GoogleSignInAccount googleSignInAccount) {
+    return i.GoogleAccount(
+      id: googleSignInAccount.id,
+      email: googleSignInAccount.email,
+      displayName: googleSignInAccount.displayName,
+      photoUrl: googleSignInAccount.photoUrl,
+    );
+  }
 }
 
 class AuthCredentials implements i.AuthCredentials {

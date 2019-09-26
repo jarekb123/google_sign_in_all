@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:googleapis_auth/auth_browser.dart';
 
 import 'interface.dart' as i;
@@ -23,15 +25,34 @@ class GoogleSignIn implements i.GoogleSignIn {
   final ClientId _clientId;
   final CreateBrowserFlow _createBrowserFlow;
 
+  AutoRefreshingAuthClient _httpClient;
+
   @override
   Future<i.AuthCredentials> signIn() async {
     final oauthFlow = await _createBrowserFlow(_clientId, scopes);
-    final accessCredentials =
-        await oauthFlow.obtainAccessCredentialsViaUserConsent();
+    _httpClient = await oauthFlow.clientViaUserConsent();
 
-    return AuthCredentials(
-      accessToken: accessCredentials.accessToken.data,
-      idToken: accessCredentials.idToken,
+    final credentials = AuthCredentials(
+      accessToken: _httpClient.credentials.accessToken.data,
+      idToken: _httpClient.credentials.idToken,
+    );
+
+    return credentials;
+  }
+
+  @override
+  Future<i.GoogleAccount> getCurrentUser() async {
+    final response =
+        await _httpClient.get('https://www.googleapis.com/oauth2/v2/userinfo');
+    final Map<String, dynamic> jsonBody = json.decode(response.body);
+
+    print(jsonBody.toString());
+
+    return i.GoogleAccount(
+      id: jsonBody['id'],
+      email: jsonBody['email'],
+      displayName: jsonBody['name'],
+      photoUrl: jsonBody['picture'],
     );
   }
 }
