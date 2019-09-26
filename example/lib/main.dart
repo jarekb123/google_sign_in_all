@@ -42,16 +42,21 @@ class LoginPage extends HookWidget {
     );
 
     final accessToken = useState('');
+    final username = useState('');
 
     final onSignIn = () async {
       final credentials = await signIn.signIn();
+      final user = await signIn.getCurrentUser();
+
       accessToken.value = credentials.accessToken;
+      username.value = user.displayName;
     };
 
     return Scaffold(
       body: Column(
         children: <Widget>[
           Text('Access Token: ${accessToken.value}'),
+          Text('Username: ${username.value}'),
           RaisedButton(
             child: Text('Sign In'),
             onPressed: onSignIn,
