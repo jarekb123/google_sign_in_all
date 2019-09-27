@@ -1,3 +1,6 @@
+## [0.0.3] - 2019/09/27
+* expose `GoogleUser` from interface in web.dart and mobile.dart
+
 ## [0.0.2] - 2019/09/26
 * Add `getCurrentUser` method
 
