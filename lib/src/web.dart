@@ -4,6 +4,8 @@ import 'package:googleapis_auth/auth_browser.dart';
 
 import 'interface.dart' as i;
 
+export 'interface.dart' show GoogleAccount;
+
 typedef Future<BrowserOAuth2Flow> CreateBrowserFlow(
     ClientId clientId, List<String> scopes);
 

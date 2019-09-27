@@ -2,6 +2,8 @@ import 'package:google_sign_in/google_sign_in.dart' as google;
 
 import 'interface.dart' as i;
 
+export 'interface.dart' show GoogleAccount;
+
 GoogleSignIn setupGoogleSignIn({
   List<String> scopes,
   String webClientId,
